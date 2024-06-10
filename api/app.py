@@ -50,4 +50,18 @@ def get_quantidade_produzida():
     if len(municipios) * len(anos) > 100:
         return jsonify({"success": False, "data": None, "message": "Número de solicitações excede o limite de 100 dados"})
     
-    municipios_placeholders = ','.join('?' * len(municipios
+    municipios_placeholders = ','.join('?' * len(municipios))
+    anos_placeholders = ','.join('?' * len(anos))
+    query = f'''
+    SELECT municipio_id, ano, valor FROM quantidade_produzida WHERE municipio_id IN ({municipios_placeholders}) AND ano IN ({anos_placeholders})
+    '''
+    
+    result = query_db(query, (*municipios, *anos))
+    
+    if result:
+        return jsonify({"success": True, "data": result, "message": "Dados encontrados"})
+    else:
+        return jsonify({"success": False, "data": None, "message": "Dados não encontrados"})
+
+if __name__ == '__main__':
+    app.run(debug=True)
