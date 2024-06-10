@@ -13,7 +13,7 @@ Este projeto implementa um pipeline de dados que consome dados de uma API públi
 
 1. Clone o repositório:
     ```sh
-    git clone https://github.com/yourusername/data_pipeline_project.git
+    git clone https://github.com/billneves/Processo-de-Pipeline-de-Dados.git
     cd data_pipeline_project
     ```
 
